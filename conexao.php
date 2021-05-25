@@ -9,3 +9,12 @@ Define('DB', 'sql10414837');
 //Define('DB', 'vitamind');
 
 $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar'); 
+
+// Check connection
+if (mysqli_connect_errno()) {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  exit;
+}
+
+// Change character set to utf8
+mysqli_set_charset($conexao,"utf8");
