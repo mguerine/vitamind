@@ -103,7 +103,7 @@ https://templatemo.com/tm-539-simple-house
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
-						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
+						echo				"<h4 class='tm-gallery-title'>" .  substr($exibe['nome'], 0,20) . "</h4>";
 						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
 						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
 
