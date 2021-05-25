@@ -69,7 +69,11 @@ https://templatemo.com/tm-539-simple-house
                 <?php
                
                 $id = $_SESSION['id_usuario'];
-                $coleta = "select * from vw_vendasgeral where id_usuario = '$id' ";
+                //$coleta = "select * from vw_vendasgeral where id_usuario = '$id' ";
+				$coleta = "SELECT us.id_usuario AS id_usuario, us.Apelido AS Apelido, us.endereco AS endereco, us.estado AS estado, pr.nome AS nome, pr.preco AS preco, pr.capa_suplemento AS capa_suplemento, ve.ticket_num AS ticket_num, ve.qt_prod AS qt_prod, ve.valor_total AS valor_total FROM ((vendas as ve join produtos as pr on(ve.produto_id = pr.produto_id)) join usuarios as us on(ve.id_usuario = us.id_usuario AND us.id_usuario = '$id')) ;";
+				 
+				
+				
                 $result = mysqli_query($conexao, $coleta);
                 $exibe = mysqli_fetch_assoc($result);
                 $total_comprado = 0;           
