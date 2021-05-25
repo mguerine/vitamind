@@ -42,7 +42,7 @@ https://templatemo.com/tm-539-simple-house
 							<ul class="tm-nav-ul">
 								<li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Produtos</a></li>
 								<li class="tm-nav-li"><a href="about.php" class="tm-nav-link">Sobre Nós</a></li>
-								<li class="tm-nav-li"><a href="login.php" class="tm-nav-link active">Login</a></li>
+								<?php if (1 == 1) {?><a href="login.php" class="tm-nav-link active"> <?php  echo ("Login"); } ?></a>
 							</ul>
 						</nav>
 					</div>

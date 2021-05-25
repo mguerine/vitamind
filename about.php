@@ -40,7 +40,15 @@ https://templatemo.com/tm-539-simple-house
 							<ul class="tm-nav-ul">
 								<li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Produtos</a></li>
 								<li class="tm-nav-li"><a href="about.php" class="tm-nav-link active">Sobre Nós</a></li>
-								<li class="tm-nav-li"><a href="login.php" class="tm-nav-link"><?php if(isset($_SESSION['usuario'])){?><a href="mostradados.php" class="tm-nav-link"><?php echo("Minha Conta");?></a> <?php } else{echo("Login");}?></a></li>
+								<?php if (isset($_SESSION['usuario'])) { ?><li class="tm-nav-li "><a href="#" class="tm-nav-link">Minha Conta</a>
+										<ul>
+											<li class="tm-nav-li"><a href="mostradados.php" class="tm-nav-link ">Dados</a></li>
+											<li class="tm-nav-li"><a href="carrinho.php" class="tm-nav-link ">Carrinho</a></li>
+											<li class="tm-nav-li"><a href="mostracompras.php" class="tm-nav-link">Compras</a></li>									
+											<li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
+										</ul>
+									</li> 
+									<?php } else {?><a href="login.php" class="tm-nav-link"> <?php  echo ("Login"); } ?></a>
 							</ul>
 						</nav>	
 					</div>

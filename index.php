@@ -10,7 +10,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
 	<link href="css/templatemo-style.css" rel="stylesheet" />
 	<link rel="shortcut icon" href="img/favicon.jpg" />
-
+	<script src = 'javascripquery.js'></script>
 </head>
 <!--
 
@@ -38,11 +38,19 @@ https://templatemo.com/tm-539-simple-house
 						</div>
 						<nav class="col-md-6 col-12 tm-nav">
 							<ul class="tm-nav-ul">
+
 								<li class="tm-nav-li"><a href="index.php" class="tm-nav-link active">Produtos</a></li>
 								<li class="tm-nav-li"><a href="about.php" class="tm-nav-link">Sobre Nós</a></li>
-								<li class="tm-nav-li"><a href="login.php" class="tm-nav-link"><?php if (isset($_SESSION['usuario'])) { ?><a href="mostradados.php" class="tm-nav-link"><?php echo ("Minha Conta"); ?></a> <?php } else {
-																																																							echo ("Login");
-																																																						} ?></a></a></li>
+								<?php if (isset($_SESSION['usuario'])) { ?><li class="tm-nav-li "><a class="tm-nav-link">Minha Conta</a>
+										<ul>
+											<li class="tm-nav-li"><a href="mostradados.php" class="tm-nav-link ">Dados</a></li>
+											<li class="tm-nav-li"><a href="carrinho.php" class="tm-nav-link ">Carrinho</a></li>
+											<li class="tm-nav-li"><a href="mostracompras.php" class="tm-nav-link">Compras</a></li>
+											<li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
+										</ul>
+									</li>
+								<?php } else { ?><a href="login.php" class="tm-nav-link"><?php echo ("Login");
+																						} ?></a></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -55,6 +63,13 @@ https://templatemo.com/tm-539-simple-house
 				<h2 class="col-12 text-center tm-section-title">Bem-vindo</h2>
 				<p class="col-12 text-center">Oferecemos diversos produtos de altíssima qualidade com preços diretamente
 					do site das marcas, tudo em um só lugar </p>
+
+				<form class="search-container" action="pesquisa.php" method="POST">
+					<input name="suplemento" type="text" id="search-bar" placeholder="Busca">
+					<input type="submit" value="PESQUISAR" class="input1">
+					<!-- <a href="pesquisa.php"><img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a> -->
+				</form>
+				
 			</header>
 
 			<div class="tm-paging-links">
@@ -84,13 +99,22 @@ https://templatemo.com/tm-539-simple-house
 					$result = mysqli_query($conexao, $coletadados);
 					?>
 					<?php while ($exibe = mysqli_fetch_assoc($result)) {
-						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item '>";
+						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item border '>";
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
 						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
-						echo				"<p class='tm-gallery-description'>Conteúdo:" . $exibe['peso'] . "</p>";
-						echo				"<p class='tm-gallery-price'>R$" . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
+						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+
+						if ($exibe['qtd_estoque'] > 0) {
+							echo "<a href='carrinho.php?cd=" . $exibe['produto_id'] . "'>";
+							echo "<button class='button1' >COMPRAR</button>";
+							echo "</a>";
+						} else {
+							echo  "<button class='button2' >INDISPONÍVEL</button>";
+						}
+
 						echo			"</figcaption>";
 						echo		"</figure>";
 						echo   "</article>";
@@ -105,18 +129,29 @@ https://templatemo.com/tm-539-simple-house
 				<!-- gallery page 2 -->
 				<div id="tm-gallery-page-integral-medica" class="tm-gallery-page hidden">
 					<?php
-					
+
 					$coletadados = "SELECT * FROM produtos where marca = 'Integral Medica'";
 					$result = mysqli_query($conexao, $coletadados);
 					?>
 					<?php while ($exibe = mysqli_fetch_assoc($result)) {
-						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item '>";
+						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item border '>";
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
 						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
-						echo				"<p class='tm-gallery-description'>Conteúdo:" . $exibe['peso'] . "</p>";
-						echo				"<p class='tm-gallery-price'>R$" . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
+						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+
+						if ($exibe['qtd_estoque'] > 0) {
+							echo "<a href='carrinho.php?cd=" . $exibe['produto_id'] . "'>";
+							echo "<button class='button1' >COMPRAR</button>";
+							echo "</a>";
+						} else {
+							echo  "<button class='button2' >INDISPONÍVEL</button>";
+						}
+
+
+
 						echo			"</figcaption>";
 						echo		"</figure>";
 						echo   "</article>";
@@ -130,18 +165,28 @@ https://templatemo.com/tm-539-simple-house
 				<!-- gallery page 3 -->
 				<div id="tm-gallery-page-black-skull" class="tm-gallery-page hidden">
 					<?php
-					
+
 					$coletadados = "SELECT * FROM produtos where marca = 'BlackSkull'";
 					$result = mysqli_query($conexao, $coletadados);
 					?>
 					<?php while ($exibe = mysqli_fetch_assoc($result)) {
-						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item '>";
+						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item border'>";
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
 						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
-						echo				"<p class='tm-gallery-description'>Conteúdo:" . $exibe['peso'] . "</p>";
-						echo				"<p class='tm-gallery-price'>R$" . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
+						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+
+						if ($exibe['qtd_estoque'] > 0) {
+							echo "<a href='carrinho.php?cd=" . $exibe['produto_id'] . "'>";
+							echo "<button class='button1' >COMPRAR</button>";
+							echo "</a>";
+						} else {
+							echo  "<button class='button2' >INDISPONÍVEL</button>";
+						}
+
+
 						echo			"</figcaption>";
 						echo		"</figure>";
 						echo   "</article>";
@@ -154,18 +199,29 @@ https://templatemo.com/tm-539-simple-house
 				<!-- gallery page 4 -->
 				<div id="tm-gallery-page-atlhetica" class="tm-gallery-page hidden">
 					<?php
-					
+
 					$coletadados = "SELECT * FROM produtos where marca = 'Atlhetica'";
 					$result = mysqli_query($conexao, $coletadados);
 					?>
 					<?php while ($exibe = mysqli_fetch_assoc($result)) {
-						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item '>";
+						echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item border '>";
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
 						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
-						echo				"<p class='tm-gallery-description'>Conteúdo:" . $exibe['peso'] . "</p>";
-						echo				"<p class='tm-gallery-price'>R$" . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
+						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+
+						if ($exibe['qtd_estoque'] > 0) {
+							echo "<a href='carrinho.php?cd=" . $exibe['produto_id'] . "'>";
+							echo "<button class='button1' >COMPRAR</button>";
+							echo "</a>";
+						} else {
+							echo  "<button class='button2' >INDISPONÍVEL</button>";
+						}
+
+
+
 						echo			"</figcaption>";
 						echo		"</figure>";
 						echo   "</article>";

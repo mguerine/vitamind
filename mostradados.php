@@ -46,9 +46,17 @@ https://templatemo.com/tm-539-simple-house
 							<ul class="tm-nav-ul">
 								<li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Produtos</a></li>
 								<li class="tm-nav-li"><a href="about.php" class="tm-nav-link">Sobre Nós</a></li>
-								<li class="tm-nav-li"><a href="login.php" class="tm-nav-link"><?php if (isset($_SESSION['usuario'])) { ?><a href="mostradados.php" class="tm-nav-link active"><?php  echo("Minha Conta"); ?></a> <?php } else {
-																																																							echo ("login");
-																																																						} ?></a></a></li>
+								<?php if (isset($_SESSION['usuario'])) { ?><li class="tm-nav-li "><a href="#" class="tm-nav-link">Minha Conta</a>
+										<ul>
+											<li class="tm-nav-li"><a href="mostradados.php" class="tm-nav-link ">Dados</a></li>
+											<li class="tm-nav-li"><a href="carrinho.php" class="tm-nav-link ">Carrinho</a></li>
+											<li class="tm-nav-li"><a href="FinalizandoCompras.php" class="tm-nav-link">Compras</a></li>
+											<li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
+										</ul>
+									</li>
+								<?php } else {
+									echo ("Login");
+								} ?></a></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -74,9 +82,8 @@ https://templatemo.com/tm-539-simple-house
 				<h3>Endereço: <?php echo $_SESSION['endereco']; ?></h3>
 				<hr>
 				<h3>Estado: <?php echo $_SESSION['estado']; ?></h3>
-				<button onclick="window.location.href = 'saindo.php' " class="button1">SAIR</button>
-				<button onclick="window.location.href = 'edita_dados.php' " class="button1">EDITAR DADOS</button>
 
+				<button onclick="window.location.href = 'edita_dados.php' " class="button1" style="margin-top: 5px; ">EDITAR DADOS</button>
 
 
 			</div>
