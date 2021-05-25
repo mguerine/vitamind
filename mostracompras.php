@@ -70,7 +70,7 @@ https://templatemo.com/tm-539-simple-house
                
                 $id = $_SESSION['id_usuario'];
                 //$coleta = "select * from vw_vendasgeral where id_usuario = '$id' ";
-				$coleta = "SELECT us.id_usuario AS id_usuario, us.Apelido AS Apelido, us.endereco AS endereco, us.estado AS estado, pr.nome AS nome, pr.preco AS preco, pr.capa_suplemento AS capa_suplemento, ve.ticket_num AS ticket_num, ve.qt_prod AS qt_prod, ve.valor_total AS valor_total FROM ((vendas as ve join produtos as pr on(ve.produto_id = pr.produto_id)) join usuarios as us on(ve.id_usuario = us.id_usuario AND us.id_usuario = '$id')) ;";
+				$coleta = "SELECT us.id_usuario AS id_usuario, us.Apelido AS Apelido, us.endereco AS endereco, us.estado AS estado, pr.nome AS nome, pr.preco AS preco, pr.capa_suplemento AS capa_suplemento, ve.ticket_num AS ticket_num, ve.qt_prod AS qt_prod, ve.valor_prod AS valor_prod, ve.valor_total AS valor_total FROM ((vendas as ve join produtos as pr on(ve.produto_id = pr.produto_id)) join usuarios as us on(ve.id_usuario = us.id_usuario AND us.id_usuario = '$id')) ;";
 				 
 				
 				
@@ -87,12 +87,12 @@ https://templatemo.com/tm-539-simple-house
                 echo                "<p class='tm-gallery-description'>Preço Unit: R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
                 echo                "<p class='tm-gallery-description'>Ticket Gerado: " . $exibe['ticket_num'] . "</p>";
                 echo                "<p class='tm-gallery-description'>Quantidade Comprada: " . $exibe['qt_prod'] . "</p>";
-                echo                "<p class='tm-gallery-description'>Valor Total: " . $exibe['valor_total'] . "</p>";
+                echo                "<p class='tm-gallery-description'>Valor Total: " . $exibe['qt_prod'] * $exibe['valor_prod'] . "</p>";
                 echo                "<p class='tm-gallery-description'>Entregar em: " . $exibe['endereco'] . " - " .$exibe['estado'] . "</p>";
                 echo            "</figcaption>";
                 echo        "</figure>";
                 echo   "</article>";
-                $total_comprado += $exibe['valor_total'];
+                $total_comprado += $exibe['qt_prod'] * $exibe['valor_prod'];
             }
             ?>
             </div>
