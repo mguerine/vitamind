@@ -8,6 +8,7 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>Vitamind</title>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+	<link href="css/all.min.css" rel="stylesheet" />
 	<link href="css/templatemo-style.css" rel="stylesheet" />
 	<link rel="shortcut icon" href="img/favicon.jpg" />
 	<script src = 'javascripquery.js'></script>
@@ -38,7 +39,6 @@ https://templatemo.com/tm-539-simple-house
 						</div>
 						<nav class="col-md-6 col-12 tm-nav">
 							<ul class="tm-nav-ul">
-
 								<li class="tm-nav-li"><a href="index.php" class="tm-nav-link active">Produtos</a></li>
 								<li class="tm-nav-li"><a href="about.php" class="tm-nav-link">Sobre Nós</a></li>
 								<?php if (isset($_SESSION['usuario'])) { ?><li class="tm-nav-li "><a class="tm-nav-link">Minha Conta</a>
@@ -49,8 +49,7 @@ https://templatemo.com/tm-539-simple-house
 											<li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
 										</ul>
 									</li>
-								<?php } else { ?><a href="login.php" class="tm-nav-link"><?php echo ("Login");
-																						} ?></a></a></li>
+									<?php } else {?><a href="login.php" class="tm-nav-link"><?php echo ("Login"); } ?></a>
 							</ul>
 						</nav>
 					</div>
@@ -138,7 +137,7 @@ https://templatemo.com/tm-539-simple-house
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
-						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
+						echo				"<h4 class='tm-gallery-title'>" .  substr($exibe['nome'], 0,20)  . "</h4>";
 						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
 						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
 
@@ -174,7 +173,7 @@ https://templatemo.com/tm-539-simple-house
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
-						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
+						echo				"<h4 class='tm-gallery-title'>" .  substr($exibe['nome'], 0,20)  . "</h4>";
 						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
 						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
 
@@ -208,7 +207,7 @@ https://templatemo.com/tm-539-simple-house
 						echo		"<figure>";
 						echo			"<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
 						echo		"<figcaption>";
-						echo				"<h4 class='tm-gallery-title'>" . mb_strimwidth($exibe['nome'], 0, 23, '...') . "</h4>";
+						echo				"<h4 class='tm-gallery-title'>" .  substr($exibe['nome'], 0,20)  . "</h4>";
 						echo				"<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
 						echo				"<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
 
