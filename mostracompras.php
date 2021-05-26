@@ -44,14 +44,16 @@ https://templatemo.com/tm-539-simple-house
                                 <li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Produtos</a></li>
                                 <li class="tm-nav-li"><a href="about.php" class="tm-nav-link">Sobre Nós</a></li>
                                 <?php if (isset($_SESSION['usuario'])) { ?><li class="tm-nav-li "><a href="#" class="tm-nav-link">Minha Conta</a>
-										<ul>
-											<li class="tm-nav-li"><a href="mostradados.php" class="tm-nav-link ">Dados</a></li>
-											<li class="tm-nav-li"><a href="carrinho.php" class="tm-nav-link ">Carrinho</a></li>
-											<li class="tm-nav-li"><a href="mostracompras.php" class="tm-nav-link">Compras</a></li>									
-											<li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
-										</ul>
-									</li> 
-									<?php } else { echo ("Login"); } ?></a></a></li>
+                                        <ul>
+                                            <li class="tm-nav-li"><a href="mostradados.php" class="tm-nav-link ">Dados</a></li>
+                                            <li class="tm-nav-li"><a href="carrinho.php" class="tm-nav-link ">Carrinho</a></li>
+                                            <li class="tm-nav-li"><a href="mostracompras.php" class="tm-nav-link">Compras</a></li>
+                                            <li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
+                                        </ul>
+                                    </li>
+                                <?php } else {
+                                    echo ("Login");
+                                } ?></a></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -61,44 +63,43 @@ https://templatemo.com/tm-539-simple-house
 
         <main>
             <header class="row tm-welcome-section">
-            <h2 class="col-12 text-center tm-section-title">Compras Realizadas</h2>
+                <h2 class="col-12 text-center tm-section-title">Compras Realizadas</h2>
 
             </header>
-            
+
             <div class="row tm-gallery">
                 <?php
-               
+
                 $id = $_SESSION['id_usuario'];
-                //$coleta = "select * from vw_vendasgeral where id_usuario = '$id' ";
-				$coleta = "SELECT us.id_usuario AS id_usuario, us.Apelido AS Apelido, us.endereco AS endereco, us.estado AS estado, pr.nome AS nome, pr.preco AS preco, pr.capa_suplemento AS capa_suplemento, ve.ticket_num AS ticket_num, ve.qt_prod AS qt_prod, ve.valor_prod AS valor_prod, ve.valor_total AS valor_total FROM ((vendas as ve join produtos as pr on(ve.produto_id = pr.produto_id)) join usuarios as us on(ve.id_usuario = us.id_usuario AND us.id_usuario = '$id')) ;";
-				 
-				
-				
+                $coleta = "SELECT us.id_usuario AS id_usuario, us.Apelido AS Apelido, us.endereco AS endereco, us.estado AS estado, pr.nome AS nome, pr.preco AS preco, pr.capa_suplemento AS capa_suplemento, ve.ticket_num AS ticket_num, ve.qt_prod AS qt_prod, ve.valor_prod AS valor_prod, ve.valor_total AS valor_total FROM ((vendas as ve join produtos as pr on(ve.produto_id = pr.produto_id)) join usuarios as us on(ve.id_usuario = us.id_usuario AND us.id_usuario = '$id')) ;";
+
+
+
                 $result = mysqli_query($conexao, $coleta);
-                $exibe = mysqli_fetch_assoc($result);
-                $total_comprado = 0;           
+                $total_comprado = 0;
                 while ($exibe = mysqli_fetch_assoc($result)) {
-                echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item border'>";
-                echo        "<figure>";
-                echo            "<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
-                echo        "<figcaption>";
-                echo                "<h4 class='tm-gallery-title'>" . substr($exibe['nome'], 0, 20) . "</h4>";
-                echo                "<p class='tm-gallery-description'>Comprador: " . $exibe['Apelido'] . "</p>";
-                echo                "<p class='tm-gallery-description'>Preço Unit: R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
-                echo                "<p class='tm-gallery-description'>Ticket Gerado: " . $exibe['ticket_num'] . "</p>";
-                echo                "<p class='tm-gallery-description'>Quantidade Comprada: " . $exibe['qt_prod'] . "</p>";
-                echo                "<p class='tm-gallery-description'>Valor Total: " . $exibe['qt_prod'] * $exibe['valor_prod'] . "</p>";
-                echo                "<p class='tm-gallery-description'>Entregar em: " . $exibe['endereco'] . " - " .$exibe['estado'] . "</p>";
-                echo            "</figcaption>";
-                echo        "</figure>";
-                echo   "</article>";
-                $total_comprado += $exibe['qt_prod'] * $exibe['valor_prod'];
-            }
-            ?>
+                    $totcompr = $exibe['qt_prod'] * $exibe['valor_prod'];
+                    echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item border'>";
+                    echo        "<figure>";
+                    echo            "<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
+                    echo        "<figcaption>";
+                    echo                "<h4 class='tm-gallery-title'>" . substr($exibe['nome'], 0, 20) . "</h4>";
+                    echo                "<p class='tm-gallery-description'>Comprador: " . $exibe['Apelido'] . "</p>";
+                    echo                "<p class='tm-gallery-description'>Preço Unit: R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
+                    echo                "<p class='tm-gallery-description'>Ticket Gerado: " . $exibe['ticket_num'] . "</p>";
+                    echo                "<p class='tm-gallery-description'>Quantidade Comprada: " . $exibe['qt_prod'] . "</p>";
+                    echo                "<p class='tm-gallery-description'>Valor Total: R$ " . number_format($totcompr, 2, ',', '.') . "</p>";
+                    echo                "<p class='tm-gallery-description'>Entregar em: " . $exibe['endereco'] . " - " . $exibe['estado'] . "</p>";
+                    echo            "</figcaption>";
+                    echo        "</figure>";
+                    echo   "</article>";
+                    $total_comprado += $exibe['qt_prod'] * $exibe['valor_prod'];
+                }
+                ?>
             </div>
             <div class=" text-center" style="margin-top: 15px;">
-                    <h1>Total em compras: R$ <?php echo number_format($total_comprado,2,',','.'); ?></h1>
-                    
+                <h1>Total em compras: R$ <?php echo number_format($total_comprado, 2, ',', '.'); ?></h1>
+
             </div>
         </main>
     </div>

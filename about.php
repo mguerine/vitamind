@@ -20,7 +20,6 @@ Simple House
 https://templatemo.com/tm-539-simple-house
 
 -->
-
 <body> 
 
 	<div class="container">
@@ -49,7 +48,7 @@ https://templatemo.com/tm-539-simple-house
 											<li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
 										</ul>
 									</li> 
-									<?php } else {?><a href="login.php" class="tm-nav-link"><?php echo ("Login");  } ?></a>
+									<?php } else {?><a href="login.php" class="tm-nav-link"> <?php  echo ("Login"); } ?></a>
 							</ul>
 						</nav>	
 					</div>

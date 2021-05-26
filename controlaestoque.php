@@ -1,4 +1,18 @@
-<?php session_start() ?>
+<?php
+session_start();
+include  "conexao.php";
+
+if (!isset($_SESSION['usuario'])) {
+    header('location: https://www.youtube.com/watch?v=UcRtFYAz2Yo');
+}
+
+
+if ((isset($_SESSION['usuario'])) && ($_SESSION['adm_status'] == 0)) {
+    header('location: https://www.youtube.com/watch?v=rRPQs_kM_nw&t=35291s');
+}
+
+
+?>
 
 <!DOCTYPE html>
 <html>
@@ -32,6 +46,34 @@
     #s1:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
+
+    .avisoborder {
+			border: solid;
+			border-radius: 10px;
+			background-color: #f54b59;
+			border-width: 1px;
+			width: 400px;
+			display: block;
+			margin-bottom: 10px;
+			margin-left: 127px;
+			font-size: 13px;
+			color: white;
+
+		}
+
+		.avisoborder2 {
+			border: solid;
+			border-radius: 10px;
+			background-color: #8dae4f;
+			border-width: 1px;
+			width: 400px;
+			display: block;
+			margin-bottom: 10px;
+			margin-left: 127px;
+			font-size: 13px;
+			color: white;
+
+		}
 </style>
 <!--
 
@@ -71,64 +113,35 @@ https://templatemo.com/tm-539-simple-house
 
         <main>
             <header class="row tm-welcome-section">
-                <h2 class="col-12 text-center tm-section-title">Alterar Dados</h2>
+                <h2 class="col-12 text-center tm-section-title">Atualizar Produtos</h2>
 
             </header>
 
-            <?php if (isset($_SESSION['status_edicao'])) { ?>
-                <div class="text-center">
-                    <p>Dados alterados com sucesso! Relogue para concluír as alterações</p>
+            <?php if (isset($_SESSION['status_Update'])) { ?>
+                <div class="text-center  avisoborder">
+                    <p>Quantia inserida</p>
                 </div>
             <?php }
-            unset($_SESSION['status_edicao']) ?>
+            unset($_SESSION['status_Update']) ?>
+
+            <?php if (isset($_SESSION['ERRO'])) { ?>
+                <div class="text-center">
+                    <p>Dados não atualizados</p>
+                </div>
+            <?php }
+            unset($_SESSION['ERRO']) ?>
 
 
 
 
             <div class="form-register">
-                <form method="POST" action="editando_dados.php">
-                    <label style="padding-left: 13px;">Apelido:</label>
-                    <input name="Apelido" type="text" value="<?php echo $_SESSION['Apelido']; ?>">
-                    <label style="padding-left: 10px;">Número de telefone:</label>
-                    <input name="telefone_cliente" type="tel" id='telefone' value="<?php echo $_SESSION['telefone_cliente']; ?>">
-                    <script type="text/javascript">
-                        $("#telefone").mask("(00) 90000-0000");
-                    </script>
-                    <label style="padding-left: 10px;">Endereço:</label>
-                    <input name="endereco" type="text" value="<?php echo $_SESSION['endereco']; ?>">
-                    <label style="padding-left: 10px;">Estado:</label>
-                    <select name="estado">
-                        <option selected><?php echo $_SESSION['estado']; ?></option>
-                        <option>AC</option>
-                        <option>AL</option>
-                        <option>AP</option>
-                        <option>AM</option>
-                        <option>BA</option>
-                        <option>CE</option>
-                        <option>ES</option>
-                        <option>GO</option>
-                        <option>MA</option>
-                        <option>MT</option>
-                        <option>MS</option>
-                        <option>MG</option>
-                        <option>PA</option>
-                        <option>PB</option>
-                        <option>PR</option>
-                        <option>PE</option>
-                        <option>PI</option>
-                        <option>RJ</option>
-                        <option>RN</option>
-                        <option>RS</option>
-                        <option>RO</option>
-                        <option>RR</option>
-                        <option>SC</option>
-                        <option>SP</option>
-                        <option>SE</option>
-                        <option>TO</option>
-                        <option>DF</option>
-                    </select>
-                    <input id="s1" type="submit" value="Salvar">
+                <form method="POST" action="atualiza.php">
+                    <label style="padding-left: 13px;">ID do produto</label>
+                    <input name="produto_id" type="number">
+                    <label style="padding-left: 13px;">Adicionar Estoque</label>
+                    <input name="qtd_estoque" type="number">
 
+                    <input id="s1" type="submit" value="Renovar Estoque">
                 </form>
             </div>
 

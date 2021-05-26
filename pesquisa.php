@@ -1,8 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario'])) {
-    header('location:login.php');
-}
 include('conexao.php'); ?>
 <!DOCTYPE html>
 <html>
@@ -81,12 +78,13 @@ https://templatemo.com/tm-539-simple-house
                 $pesquisando = $_POST['suplemento'];
                 $query = "select * from produtos where nome like '%$pesquisando%'";
                 $result = mysqli_query($conexao, $query);
+            
                 while ($exibe = mysqli_fetch_assoc($result)) {
                     echo "<article class='col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item border '>";
                     echo        "<figure>";
                     echo            "<img src= '" . $exibe['capa_suplemento'] . "' alt='Image' class='img-fluid tm-gallery-img'/>";
                     echo        "<figcaption>";
-                    echo                "<h4 class='tm-gallery-title'>" . substr($exibe['nome'], 0, 20) . "</h4>";
+                    echo				"<h4 class='tm-gallery-title'>" .  substr($exibe['nome'], 0,20) . "</h4>";
                     echo                "<p class='tm-gallery-description'>Conteúdo: " . $exibe['peso'] . "</p>";
                     echo                "<p class='tm-gallery-price'>R$ " . number_format($exibe['preco'], 2, ',', '.') . "</p>";
 

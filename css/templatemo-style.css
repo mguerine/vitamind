@@ -909,20 +909,8 @@ input{
 }
 
 
-#s1{
-  justify-content: center;
-  text-decoration: none;
-  color: #000000;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
 
-#s1.active,
-#s1:hover{
-  background-color: #2F956D;
-  color: white;
-}
+
 
 .form-register{
   width: 420px;
@@ -930,6 +918,7 @@ input{
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
+  padding-top: -100px;
   
 }
 
@@ -1096,4 +1085,9 @@ input#search-bar{
     border: 1px solid #D0CFCE;
 
   }
+  
+
+
+
+
   

@@ -1,4 +1,4 @@
-<?php session_start()?>
+<?php session_start() ?>
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,23 @@
 	<link href="css/templatemo-style.css" rel="stylesheet" />
 	<link rel="shortcut icon" href="img/favicon.jpg" />
 
+
+	<style>
+		#s1 {
+			justify-content: center;
+			text-decoration: none;
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			background-color: #2F956D;
+			color: white;
+		}
+
+		#s1:hover {
+			box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+		}
+		
+	</style>
 </head>
 <!--
 
@@ -42,7 +59,8 @@ https://templatemo.com/tm-539-simple-house
 							<ul class="tm-nav-ul">
 								<li class="tm-nav-li"><a href="index.php" class="tm-nav-link">Produtos</a></li>
 								<li class="tm-nav-li"><a href="about.php" class="tm-nav-link">Sobre Nós</a></li>
-								<?php if (1 == 1) {?><a href="login.php" class="tm-nav-link active"> <?php  echo ("Login"); } ?></a>
+								<?php if (1 == 1) { ?><a href="login.php" class="tm-nav-link active"> <?php echo ("Login");
+																									} ?></a>
 							</ul>
 						</nav>
 					</div>
@@ -56,22 +74,22 @@ https://templatemo.com/tm-539-simple-house
 			</header>
 
 			<div class="tm-container-inner-2 tm-contact-section">
-				
+
 				<h2 class="col-12 text-center tm-section-title">Entrar</h2>
 
 				<?php
-				  if(isset($_SESSION['nao_autenticado'])){
+				if (isset($_SESSION['nao_autenticado'])) {
 				?>
-				<div class="text-center">
-					<p>Usuário ou senha inválidos.</p>
-				</div>
+					<div class="text-center avisoborder">
+						<p>Usuário ou senha inválidos.</p>
+					</div>
 				<?php
-				  }
-				  unset ($_SESSION['nao_autenticado']);
-				?> 
+				}
+				unset($_SESSION['nao_autenticado']);
+				?>
 				<div class="form-login">
 					<form method="POST" action="loginII.php">
-						<input  name="usuario" type="email" placeholder="Usuário">
+						<input name="usuario" type="email" placeholder="Usuário">
 						<input name="senha" type="password" placeholder="Senha">
 						<input id="s1" type="submit" value="Logar">
 						<a id="a1" href="register.php">Não tem uma conta? <strong>Registre-se</strong></a>

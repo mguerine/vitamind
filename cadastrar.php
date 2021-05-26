@@ -8,6 +8,8 @@ $dtn = mysqli_real_escape_string($conexao, trim($_POST['data_nascimento']));
 $end = mysqli_real_escape_string($conexao,  trim($_POST['endereco']));
 $est = mysqli_real_escape_string($conexao, trim($_POST['estado']));
 $as =  mysqli_real_escape_string($conexao, trim($_POST['Apelido']));
+$data = date('Y-m-d');
+$StatusAdm = 0;
 
 
 $sql = "select count(*) as total from usuarios where email = '{$usuario}' ";
@@ -23,16 +25,17 @@ if ($row['total'] == 1){
 }
 
 
-$sql = "insert into usuarios(email,senha,telefone_cliente,data_nascimento, endereco, estado, Apelido) values ('$usuario', md5('$senha'), '$tel', '$dtn', '$end',
-'$est', '$as')";
+$sql = "insert into usuarios(email,senha,telefone_cliente,data_nascimento, endereco, estado, Apelido, adm_status) values ('$usuario', md5('$senha'), '$tel', '$dtn', '$end',
+'$est', '$as', '$StatusAdm')";
+
 
 if($conexao->query($sql) === true ) {
     $_SESSION['status_cadastro'] = true;
+    $query = "INSERT INTO ocorrencias(data_da_ocorrencia, descricao, referencia) values('$data', 'Novo usuário detectado: $usuario', 'cadastro');";
+    mysqli_query($conexao, $query );
 }
 
 $conexao -> close();
 
 header('location: register.php');
 exit;
-
-?>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('verifica_login.php');
+$verificatipo = $_SESSION['adm_status'];
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +51,7 @@ https://templatemo.com/tm-539-simple-house
 										<ul>
 											<li class="tm-nav-li"><a href="mostradados.php" class="tm-nav-link ">Dados</a></li>
 											<li class="tm-nav-li"><a href="carrinho.php" class="tm-nav-link ">Carrinho</a></li>
-											<li class="tm-nav-li"><a href="FinalizandoCompras.php" class="tm-nav-link">Compras</a></li>
+											<li class="tm-nav-li"><a href="mostracompras.php" class="tm-nav-link">Compras</a></li>
 											<li class="tm-nav-li"><a href="saindo.php" class="tm-nav-link ">sair</a></li>
 										</ul>
 									</li>
@@ -66,11 +67,20 @@ https://templatemo.com/tm-539-simple-house
 
 		<main>
 			<header class="row tm-welcome-section">
-
+			<h2 class="col-12 text-center tm-section-title">Bem-Vindo!</h2>
 			</header>
 
 			<div class="tm-container-inner-2 tm-contact-section">
-				<h2 class="col-12 text-center tm-section-title">Bem-Vindo!</h2>
+
+				<?php if($verificatipo == 1){?>
+					<h3>Logado como administrador</h3>
+				    <hr>
+				<?php } else {?>
+				    <h3>Logado como comprador</h3>
+					<hr>
+				<?php } ?>
+			
+			
 				<h3>Email: <?php echo $_SESSION['usuario']; ?></h3>
 				<hr>
 				<h3>Apelido: <?php echo $_SESSION['Apelido']; ?> Id: <?php echo $_SESSION['id_usuario']; ?></h3>
@@ -84,6 +94,18 @@ https://templatemo.com/tm-539-simple-house
 				<h3>Estado: <?php echo $_SESSION['estado']; ?></h3>
 
 				<button onclick="window.location.href = 'edita_dados.php' " class="button1" style="margin-top: 5px; ">EDITAR DADOS</button>
+				<?php  if($verificatipo == 1){ ?>
+				<button onclick="window.location.href = 'log.php' " class="button1" style="margin-top: 5px; ">VERIFICAR LOG DA LOJA</button>
+				<?php } ?>
+				<?php  if($verificatipo == 1){ ?>
+				<button onclick="window.location.href = 'insereproduto.php' " class="button1" style="margin-top: 5px; ">INSERIR PRODUTOS</button>
+				<?php } ?>
+				<?php  if($verificatipo == 1){ ?>
+				<button onclick="window.location.href = 'controlaestoque.php' " class="button1" style="margin-top: 5px; ">CONTROLA ESTOQUE</button>
+				<?php } ?>
+				<?php  if($verificatipo == 1){ ?>
+				<button onclick="window.location.href = 'deletaprodutobdd.php' " class="button1" style="margin-top: 5px; ">DELETAR PRODUTO</button>
+				<?php } ?>
 
 
 			</div>
