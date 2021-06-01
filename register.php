@@ -136,23 +136,23 @@ https://templatemo.com/tm-539-simple-house
 			<div class="form-register">
 				<form method="POST" action="cadastrar.php">
 					<label style="padding-left: 10px;">Email:</label>
-					<input name="email" type="email" placeholder="Insira seu e-mail">
+					<input name="email" type="email" placeholder="Insira seu e-mail" required>
 					<label style="padding-left: 10px;">Apelido:</label>
-					<input name="Apelido" type="text" placeholder="Apelido2021">
+					<input name="Apelido" type="text" placeholder="Apelido2021" required>
 					<label style="padding-left: 10px;">Senha: </label>
-					<input name="senha" type="password" placeholder="Insira sua senha" minlength="6" maxlength="12" onKeyUp="verificaForcaSenha();" id="password">
+					<input name="senha" type="password" placeholder="Insira sua senha" minlength="6" maxlength="12" onKeyUp="verificaForcaSenha();" id="password" required>
 					<span id="password-status"></span><br>
 					<label style="padding-left: 10px;">Número de telefone:</label>
-					<input type="text" name="telefone_cliente" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}" placeholder="Insira seu número de celular">
+					<input type="text" name="telefone_cliente" id="telefone" pattern="\([0-9]{2}\)[\s][0-9]{5}-[0-9]{4}" placeholder="Insira seu número de celular" required>
 					<script type="text/javascript">
 						$("#telefone").mask("(00) 90000-0000");
 					</script>
 					<label style="padding-left: 10px;">Data de nascimento:</label>
-					<input name="data_nascimento" type="date">
+					<input name="data_nascimento" type="date" required>
 					<label style="padding-left: 10px;">Endereço:</label>
-					<input name="endereco" type="text" placeholder="Avenida Nevada, n° 53, ap. 203">
+					<input name="endereco" type="text" placeholder="Avenida Nevada, n° 53, ap. 203" required>
 					<label style="padding-left: 10px;">Estado:</label>
-					<select name="estado">
+					<select name="estado" required>
 
 						<option selected>Estado...</option>
 						<option>AC</option>

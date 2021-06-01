@@ -55,10 +55,9 @@ if ((isset($_SESSION['usuario'])) && ($_SESSION['adm_status'] == 0)) {
 			width: 400px;
 			display: block;
 			margin-bottom: 10px;
-			margin-left: 127px;
+			margin-left: 400px;
 			font-size: 13px;
 			color: white;
-
 		}
 
 		.avisoborder2 {
@@ -69,7 +68,7 @@ if ((isset($_SESSION['usuario'])) && ($_SESSION['adm_status'] == 0)) {
 			width: 400px;
 			display: block;
 			margin-bottom: 10px;
-			margin-left: 127px;
+			margin-left: 400px;
 			font-size: 13px;
 			color: white;
 
@@ -118,7 +117,7 @@ https://templatemo.com/tm-539-simple-house
             </header>
 
             <?php if (isset($_SESSION['status_Update'])) { ?>
-                <div class="text-center  avisoborder">
+                <div class="text-center  avisoborder2">
                     <p>Quantia inserida</p>
                 </div>
             <?php }

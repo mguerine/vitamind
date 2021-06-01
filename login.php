@@ -28,6 +28,18 @@
 		#s1:hover {
 			box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 		}
+		.avisoborder {
+			border: solid;
+			border-radius: 10px;
+			background-color: #f54b59;
+			border-width: 1px;
+			width: 400px;
+			display: block;
+			margin-bottom: 10px;
+			margin-left: 233px;
+			font-size: 13px;
+			color: white;
+		}
 		
 	</style>
 </head>

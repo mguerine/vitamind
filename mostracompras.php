@@ -76,6 +76,7 @@ https://templatemo.com/tm-539-simple-house
 
 
                 $result = mysqli_query($conexao, $coleta);
+                $exibe = mysqli_fetch_assoc($result);
                 $total_comprado = 0;
                 while ($exibe = mysqli_fetch_assoc($result)) {
                     $totcompr = $exibe['qt_prod'] * $exibe['valor_prod'];

@@ -46,7 +46,6 @@ if ((isset($_SESSION['usuario'])) && ($_SESSION['adm_status'] == 0)) {
     #s1:hover {
         box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
     }
-
     .avisoborder {
 			border: solid;
 			border-radius: 10px;
@@ -55,10 +54,9 @@ if ((isset($_SESSION['usuario'])) && ($_SESSION['adm_status'] == 0)) {
 			width: 400px;
 			display: block;
 			margin-bottom: 10px;
-			margin-left: 127px;
+			margin-left: 400px;
 			font-size: 13px;
 			color: white;
-
 		}
 
 		.avisoborder2 {
@@ -69,7 +67,7 @@ if ((isset($_SESSION['usuario'])) && ($_SESSION['adm_status'] == 0)) {
 			width: 400px;
 			display: block;
 			margin-bottom: 10px;
-			margin-left: 127px;
+			margin-left: 400px;
 			font-size: 13px;
 			color: white;
 
@@ -117,8 +115,8 @@ https://templatemo.com/tm-539-simple-house
 
             </header>
 
-            <?php if (isset($_SESSION['status_insert'])) { ?>
-                <div class="text-center  avisoborder">
+            <?php  if (isset($_SESSION['status_insert'])) { ?>
+                <div class="text-center  avisoborder2">
                     <p >Produto inserido com sucesso</p>
                 </div>
             <?php }

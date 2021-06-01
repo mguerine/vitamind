@@ -9,6 +9,7 @@ Define('DB', 'sql10414837');
 //Define('SENHA', '');
 //Define('DB', 'vitamind');
 
+
 $conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('Não foi possível conectar'); 
 
 // Check connection
